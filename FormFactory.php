@@ -126,4 +126,12 @@ class FormFactory implements FormFactoryInterface
 
         return $this->createNamedBuilder($property, $type, $data, $options);
     }
+
+    /**
+     * @return FormRegistryInterface
+     */
+    protected function getRegistry()
+    {
+        return $this->registry;
+    }
 }
