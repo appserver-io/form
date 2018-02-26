@@ -271,4 +271,20 @@ class FormBuilder extends FormConfigBuilder implements \IteratorAggregate, FormB
 
         $this->unresolvedChildren = array();
     }
+
+    /**
+     * @return FormBuilderInterface[]
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * @return array
+     */
+    public function getUnresolvedChildren()
+    {
+        return $this->unresolvedChildren;
+    }
 }

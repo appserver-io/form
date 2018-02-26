@@ -98,7 +98,7 @@ use Symfony\Component\Form\Extension\Core\CoreExtension;
  *
  * @author Bernhard Schussek <bschussek@gmail.com>
  */
-final class Forms
+class Forms
 {
     /**
      * Creates a form factory with the default configuration.
