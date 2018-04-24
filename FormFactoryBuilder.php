@@ -158,4 +158,44 @@ class FormFactoryBuilder implements FormFactoryBuilderInterface
 
         return new FormFactory($registry);
     }
+
+    /**
+     * @return ResolvedFormTypeFactoryInterface
+     */
+    protected function getResolvedTypeFactory()
+    {
+        return $this->resolvedTypeFactory;
+    }
+
+    /**
+     * @return FormExtensionInterface[]
+     */
+    protected function getExtensions()
+    {
+        return $this->extensions;
+    }
+
+    /**
+     * @return FormTypeInterface[]
+     */
+    protected function getTypes()
+    {
+        return $this->types;
+    }
+
+    /**
+     * @return FormTypeExtensionInterface[]
+     */
+    protected function getTypeExtensions()
+    {
+        return $this->typeExtensions;
+    }
+
+    /**
+     * @return FormTypeGuesserInterface[]
+     */
+    protected function getTypeGuessers()
+    {
+        return $this->typeGuessers;
+    }
 }
