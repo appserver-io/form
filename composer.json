@@ -1,5 +1,5 @@
 {
-    "name": "symfony/form",
+    "name": "appserver-io/form",
     "type": "library",
     "description": "Symfony Form Component",
     "keywords": [],
