@@ -11,7 +11,6 @@
 
 namespace Symfony\Component\Form\Extension\Core\DataTransformer;
 
-use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\ChoiceList\ChoiceListInterface;
@@ -39,10 +38,6 @@ class ChoicesToValuesTransformer implements DataTransformerInterface
             return array();
         }
 
-        if ($array instanceof Collection) {
-            $array = $array->toArray();
-        }
-
         if (!is_array($array)) {
             throw new TransformationFailedException('Expected an array.');
         }
@@ -61,10 +56,6 @@ class ChoicesToValuesTransformer implements DataTransformerInterface
     {
         if (null === $array) {
             return array();
-        }
-
-        if ($array instanceof Collection) {
-            $array = $array->toArray();
         }
 
         if (!is_array($array)) {

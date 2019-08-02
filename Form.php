@@ -464,18 +464,6 @@ class Form implements \IteratorAggregate, FormInterface
     }
 
     /**
-     * Sets the view data.
-     *
-     * @param mixed $viewData the view data to set
-     *
-     * @return void
-     */
-    public function setViewData($viewData)
-    {
-        $this->viewData = $viewData;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getExtraData()
