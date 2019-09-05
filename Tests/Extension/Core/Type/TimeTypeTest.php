@@ -11,25 +11,28 @@
 
 namespace Symfony\Component\Form\Tests\Extension\Core\Type;
 
+use Symfony\Bridge\PhpUnit\ForwardCompatTestTrait;
 use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 use Symfony\Component\Form\FormError;
 
 class TimeTypeTest extends BaseTypeTest
 {
+    use ForwardCompatTestTrait;
+
     const TESTED_TYPE = 'Symfony\Component\Form\Extension\Core\Type\TimeType';
 
     public function testSubmitDateTime()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'datetime',
-        ));
+        ]);
 
-        $input = array(
+        $input = [
             'hour' => '3',
             'minute' => '4',
-        );
+        ];
 
         $form->submit($input);
 
@@ -41,16 +44,16 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitString()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'string',
-        ));
+        ]);
 
-        $input = array(
+        $input = [
             'hour' => '3',
             'minute' => '4',
-        );
+        ];
 
         $form->submit($input);
 
@@ -60,16 +63,16 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitTimestamp()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'timestamp',
-        ));
+        ]);
 
-        $input = array(
+        $input = [
             'hour' => '3',
             'minute' => '4',
-        );
+        ];
 
         $form->submit($input);
 
@@ -81,16 +84,16 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitArray()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'array',
-        ));
+        ]);
 
-        $input = array(
+        $input = [
             'hour' => '3',
             'minute' => '4',
-        );
+        ];
 
         $form->submit($input);
 
@@ -100,12 +103,12 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitDatetimeSingleText()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'datetime',
             'widget' => 'single_text',
-        ));
+        ]);
 
         $form->submit('03:04');
 
@@ -115,13 +118,13 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitDatetimeSingleTextWithoutMinutes()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'datetime',
             'widget' => 'single_text',
             'with_minutes' => false,
-        ));
+        ]);
 
         $form->submit('03');
 
@@ -131,17 +134,17 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitArraySingleText()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'array',
             'widget' => 'single_text',
-        ));
+        ]);
 
-        $data = array(
+        $data = [
             'hour' => '3',
             'minute' => '4',
-        );
+        ];
 
         $form->submit('03:04');
 
@@ -151,17 +154,17 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitArraySingleTextWithoutMinutes()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'array',
             'widget' => 'single_text',
             'with_minutes' => false,
-        ));
+        ]);
 
-        $data = array(
+        $data = [
             'hour' => '3',
-        );
+        ];
 
         $form->submit('03');
 
@@ -171,19 +174,19 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitArraySingleTextWithSeconds()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'array',
             'widget' => 'single_text',
             'with_seconds' => true,
-        ));
+        ]);
 
-        $data = array(
+        $data = [
             'hour' => '3',
             'minute' => '4',
             'second' => '5',
-        );
+        ];
 
         $form->submit('03:04:05');
 
@@ -193,12 +196,12 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitStringSingleText()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'string',
             'widget' => 'single_text',
-        ));
+        ]);
 
         $form->submit('03:04');
 
@@ -208,13 +211,13 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitStringSingleTextWithoutMinutes()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'string',
             'widget' => 'single_text',
             'with_minutes' => false,
-        ));
+        ]);
 
         $form->submit('03');
 
@@ -224,13 +227,13 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitWithSecondsAndBrowserOmissionSeconds()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'string',
             'widget' => 'single_text',
             'with_seconds' => true,
-        ));
+        ]);
 
         $form->submit('03:04');
 
@@ -240,40 +243,40 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSetDataWithoutMinutes()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'datetime',
             'with_minutes' => false,
-        ));
+        ]);
 
         $form->setData(new \DateTime('03:04:05 UTC'));
 
-        $this->assertEquals(array('hour' => 3), $form->getViewData());
+        $this->assertEquals(['hour' => 3], $form->getViewData());
     }
 
     public function testSetDataWithSeconds()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'UTC',
             'view_timezone' => 'UTC',
             'input' => 'datetime',
             'with_seconds' => true,
-        ));
+        ]);
 
         $form->setData(new \DateTime('03:04:05 UTC'));
 
-        $this->assertEquals(array('hour' => 3, 'minute' => 4, 'second' => 5), $form->getViewData());
+        $this->assertEquals(['hour' => 3, 'minute' => 4, 'second' => 5], $form->getViewData());
     }
 
     public function testSetDataDifferentTimezones()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'America/New_York',
             'view_timezone' => 'Asia/Hong_Kong',
             'input' => 'string',
             'with_seconds' => true,
-        ));
+        ]);
 
         $dateTime = new \DateTime('2013-01-01 12:04:05');
         $dateTime->setTimezone(new \DateTimeZone('America/New_York'));
@@ -283,23 +286,23 @@ class TimeTypeTest extends BaseTypeTest
         $outputTime = clone $dateTime;
         $outputTime->setTimezone(new \DateTimeZone('Asia/Hong_Kong'));
 
-        $displayedData = array(
+        $displayedData = [
             'hour' => (int) $outputTime->format('H'),
             'minute' => (int) $outputTime->format('i'),
             'second' => (int) $outputTime->format('s'),
-        );
+        ];
 
         $this->assertEquals($displayedData, $form->getViewData());
     }
 
     public function testSetDataDifferentTimezonesDateTime()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'model_timezone' => 'America/New_York',
             'view_timezone' => 'Asia/Hong_Kong',
             'input' => 'datetime',
             'with_seconds' => true,
-        ));
+        ]);
 
         $dateTime = new \DateTime('12:04:05');
         $dateTime->setTimezone(new \DateTimeZone('America/New_York'));
@@ -309,11 +312,11 @@ class TimeTypeTest extends BaseTypeTest
         $outputTime = clone $dateTime;
         $outputTime->setTimezone(new \DateTimeZone('Asia/Hong_Kong'));
 
-        $displayedData = array(
+        $displayedData = [
             'hour' => (int) $outputTime->format('H'),
             'minute' => (int) $outputTime->format('i'),
             'second' => (int) $outputTime->format('s'),
-        );
+        ];
 
         $this->assertEquals($dateTime, $form->getData());
         $this->assertEquals($displayedData, $form->getViewData());
@@ -321,59 +324,59 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testHoursOption()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
-            'hours' => array(6, 7),
-        ));
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
+            'hours' => [6, 7],
+        ]);
 
         $view = $form->createView();
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             new ChoiceView('6', '6', '06'),
             new ChoiceView('7', '7', '07'),
-        ), $view['hour']->vars['choices']);
+        ], $view['hour']->vars['choices']);
     }
 
     public function testIsMinuteWithinRangeReturnsTrueIfWithin()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
-            'minutes' => array(6, 7),
-        ));
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
+            'minutes' => [6, 7],
+        ]);
 
         $view = $form->createView();
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             new ChoiceView('6', '6', '06'),
             new ChoiceView('7', '7', '07'),
-        ), $view['minute']->vars['choices']);
+        ], $view['minute']->vars['choices']);
     }
 
     public function testIsSecondWithinRangeReturnsTrueIfWithin()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
-            'seconds' => array(6, 7),
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
+            'seconds' => [6, 7],
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
 
-        $this->assertEquals(array(
+        $this->assertEquals([
             new ChoiceView('6', '6', '06'),
             new ChoiceView('7', '7', '07'),
-        ), $view['second']->vars['choices']);
+        ], $view['second']->vars['choices']);
     }
 
     public function testIsPartiallyFilledReturnsFalseIfCompletelyEmpty()
     {
         $this->markTestIncomplete('Needs to be reimplemented using validators');
 
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'choice',
-        ));
+        ]);
 
-        $form->submit(array(
+        $form->submit([
             'hour' => '',
             'minute' => '',
-        ));
+        ]);
 
         $this->assertFalse($form->isPartiallyFilled());
     }
@@ -382,16 +385,16 @@ class TimeTypeTest extends BaseTypeTest
     {
         $this->markTestIncomplete('Needs to be reimplemented using validators');
 
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'choice',
             'with_seconds' => true,
-        ));
+        ]);
 
-        $form->submit(array(
+        $form->submit([
             'hour' => '',
             'minute' => '',
             'second' => '',
-        ));
+        ]);
 
         $this->assertFalse($form->isPartiallyFilled());
     }
@@ -400,14 +403,14 @@ class TimeTypeTest extends BaseTypeTest
     {
         $this->markTestIncomplete('Needs to be reimplemented using validators');
 
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'choice',
-        ));
+        ]);
 
-        $form->submit(array(
+        $form->submit([
             'hour' => '0',
             'minute' => '0',
-        ));
+        ]);
 
         $this->assertFalse($form->isPartiallyFilled());
     }
@@ -416,16 +419,16 @@ class TimeTypeTest extends BaseTypeTest
     {
         $this->markTestIncomplete('Needs to be reimplemented using validators');
 
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'choice',
             'with_seconds' => true,
-        ));
+        ]);
 
-        $form->submit(array(
+        $form->submit([
             'hour' => '0',
             'minute' => '0',
             'second' => '0',
-        ));
+        ]);
 
         $this->assertFalse($form->isPartiallyFilled());
     }
@@ -434,16 +437,16 @@ class TimeTypeTest extends BaseTypeTest
     {
         $this->markTestIncomplete('Needs to be reimplemented using validators');
 
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'choice',
             'with_seconds' => true,
-        ));
+        ]);
 
-        $form->submit(array(
+        $form->submit([
             'hour' => '',
             'minute' => '0',
             'second' => '0',
-        ));
+        ]);
 
         $this->assertTrue($form->isPartiallyFilled());
     }
@@ -452,16 +455,16 @@ class TimeTypeTest extends BaseTypeTest
     {
         $this->markTestIncomplete('Needs to be reimplemented using validators');
 
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'choice',
             'with_seconds' => true,
-        ));
+        ]);
 
-        $form->submit(array(
+        $form->submit([
             'hour' => '0',
             'minute' => '',
             'second' => '0',
-        ));
+        ]);
 
         $this->assertTrue($form->isPartiallyFilled());
     }
@@ -470,16 +473,16 @@ class TimeTypeTest extends BaseTypeTest
     {
         $this->markTestIncomplete('Needs to be reimplemented using validators');
 
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'choice',
             'with_seconds' => true,
-        ));
+        ]);
 
-        $form->submit(array(
+        $form->submit([
             'hour' => '0',
             'minute' => '0',
             'second' => '',
-        ));
+        ]);
 
         $this->assertTrue($form->isPartiallyFilled());
     }
@@ -493,9 +496,9 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSingleTextWidgetShouldUseTheRightInputType()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'single_text',
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertEquals('time', $view->vars['type']);
@@ -503,10 +506,10 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSingleTextWidgetWithSecondsShouldHaveRightStepAttribute()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'single_text',
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertArrayHasKey('step', $view->vars['attr']);
@@ -515,13 +518,13 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSingleTextWidgetWithSecondsShouldNotOverrideStepAttribute()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'single_text',
             'with_seconds' => true,
-            'attr' => array(
+            'attr' => [
                 'step' => 30,
-            ),
-        ));
+            ],
+        ]);
 
         $view = $form->createView();
         $this->assertArrayHasKey('step', $view->vars['attr']);
@@ -530,10 +533,10 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testDontPassHtml5TypeIfHtml5NotAllowed()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => 'single_text',
             'html5' => false,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertArrayNotHasKey('type', $view->vars);
@@ -541,10 +544,10 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testPassDefaultPlaceholderToViewIfNotRequired()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'required' => false,
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertSame('', $view['hour']->vars['placeholder']);
@@ -554,10 +557,10 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testPassNoPlaceholderToViewIfRequired()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'required' => true,
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertNull($view['hour']->vars['placeholder']);
@@ -567,10 +570,10 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testPassPlaceholderAsString()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'placeholder' => 'Empty',
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertSame('Empty', $view['hour']->vars['placeholder']);
@@ -580,14 +583,14 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testPassPlaceholderAsArray()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
-            'placeholder' => array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
+            'placeholder' => [
                 'hour' => 'Empty hour',
                 'minute' => 'Empty minute',
                 'second' => 'Empty second',
-            ),
+            ],
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertSame('Empty hour', $view['hour']->vars['placeholder']);
@@ -597,14 +600,14 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testPassPlaceholderAsPartialArrayAddEmptyIfNotRequired()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'required' => false,
-            'placeholder' => array(
+            'placeholder' => [
                 'hour' => 'Empty hour',
                 'second' => 'Empty second',
-            ),
+            ],
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertSame('Empty hour', $view['hour']->vars['placeholder']);
@@ -614,14 +617,14 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testPassPlaceholderAsPartialArrayAddNullIfRequired()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'required' => true,
-            'placeholder' => array(
+            'placeholder' => [
                 'hour' => 'Empty hour',
                 'second' => 'Empty second',
-            ),
+            ],
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertSame('Empty hour', $view['hour']->vars['placeholder']);
@@ -631,10 +634,10 @@ class TimeTypeTest extends BaseTypeTest
 
     public function provideCompoundWidgets()
     {
-        return array(
-            array('text'),
-            array('choice'),
-        );
+        return [
+            ['text'],
+            ['choice'],
+        ];
     }
 
     /**
@@ -643,13 +646,13 @@ class TimeTypeTest extends BaseTypeTest
     public function testHourErrorsBubbleUp($widget)
     {
         $error = new FormError('Invalid!');
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => $widget,
-        ));
+        ]);
         $form['hour']->addError($error);
 
-        $this->assertSame(array(), iterator_to_array($form['hour']->getErrors()));
-        $this->assertSame(array($error), iterator_to_array($form->getErrors()));
+        $this->assertSame([], iterator_to_array($form['hour']->getErrors()));
+        $this->assertSame([$error], iterator_to_array($form->getErrors()));
     }
 
     /**
@@ -658,13 +661,13 @@ class TimeTypeTest extends BaseTypeTest
     public function testMinuteErrorsBubbleUp($widget)
     {
         $error = new FormError('Invalid!');
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => $widget,
-        ));
+        ]);
         $form['minute']->addError($error);
 
-        $this->assertSame(array(), iterator_to_array($form['minute']->getErrors()));
-        $this->assertSame(array($error), iterator_to_array($form->getErrors()));
+        $this->assertSame([], iterator_to_array($form['minute']->getErrors()));
+        $this->assertSame([$error], iterator_to_array($form->getErrors()));
     }
 
     /**
@@ -673,55 +676,47 @@ class TimeTypeTest extends BaseTypeTest
     public function testSecondErrorsBubbleUp($widget)
     {
         $error = new FormError('Invalid!');
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'widget' => $widget,
             'with_seconds' => true,
-        ));
+        ]);
         $form['second']->addError($error);
 
-        $this->assertSame(array(), iterator_to_array($form['second']->getErrors()));
-        $this->assertSame(array($error), iterator_to_array($form->getErrors()));
+        $this->assertSame([], iterator_to_array($form['second']->getErrors()));
+        $this->assertSame([$error], iterator_to_array($form->getErrors()));
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\InvalidConfigurationException
-     */
     public function testInitializeWithSecondsAndWithoutMinutes()
     {
-        $this->factory->create(static::TESTED_TYPE, null, array(
+        $this->expectException('Symfony\Component\Form\Exception\InvalidConfigurationException');
+        $this->factory->create(static::TESTED_TYPE, null, [
             'with_minutes' => false,
             'with_seconds' => true,
-        ));
+        ]);
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
     public function testThrowExceptionIfHoursIsInvalid()
     {
-        $this->factory->create(static::TESTED_TYPE, null, array(
+        $this->expectException('Symfony\Component\OptionsResolver\Exception\InvalidOptionsException');
+        $this->factory->create(static::TESTED_TYPE, null, [
             'hours' => 'bad value',
-        ));
+        ]);
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
     public function testThrowExceptionIfMinutesIsInvalid()
     {
-        $this->factory->create(static::TESTED_TYPE, null, array(
+        $this->expectException('Symfony\Component\OptionsResolver\Exception\InvalidOptionsException');
+        $this->factory->create(static::TESTED_TYPE, null, [
             'minutes' => 'bad value',
-        ));
+        ]);
     }
 
-    /**
-     * @expectedException \Symfony\Component\OptionsResolver\Exception\InvalidOptionsException
-     */
     public function testThrowExceptionIfSecondsIsInvalid()
     {
-        $this->factory->create(static::TESTED_TYPE, null, array(
+        $this->expectException('Symfony\Component\OptionsResolver\Exception\InvalidOptionsException');
+        $this->factory->create(static::TESTED_TYPE, null, [
             'seconds' => 'bad value',
-        ));
+        ]);
     }
 
     public function testPassDefaultChoiceTranslationDomain()
@@ -735,10 +730,10 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testPassChoiceTranslationDomainAsString()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
             'choice_translation_domain' => 'messages',
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertSame('messages', $view['hour']->vars['choice_translation_domain']);
@@ -748,13 +743,13 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testPassChoiceTranslationDomainAsArray()
     {
-        $form = $this->factory->create(static::TESTED_TYPE, null, array(
-            'choice_translation_domain' => array(
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
+            'choice_translation_domain' => [
                 'hour' => 'foo',
                 'second' => 'test',
-            ),
+            ],
             'with_seconds' => true,
-        ));
+        ]);
 
         $view = $form->createView();
         $this->assertSame('foo', $view['hour']->vars['choice_translation_domain']);
@@ -764,8 +759,48 @@ class TimeTypeTest extends BaseTypeTest
 
     public function testSubmitNull($expected = null, $norm = null, $view = null)
     {
-        $view = array('hour' => '', 'minute' => '');
+        $view = ['hour' => '', 'minute' => ''];
 
         parent::testSubmitNull($expected, $norm, $view);
+    }
+
+    public function testSubmitNullUsesDefaultEmptyData($emptyData = [], $expectedData = null)
+    {
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
+            'empty_data' => $emptyData,
+        ]);
+        $form->submit(null);
+
+        // view transformer writes back empty strings in the view data
+        $this->assertSame(['hour' => '', 'minute' => ''], $form->getViewData());
+        $this->assertSame($expectedData, $form->getNormData());
+        $this->assertSame($expectedData, $form->getData());
+    }
+
+    /**
+     * @dataProvider provideEmptyData
+     */
+    public function testSubmitNullUsesDateEmptyData($widget, $emptyData, $expectedData)
+    {
+        $form = $this->factory->create(static::TESTED_TYPE, null, [
+            'widget' => $widget,
+            'empty_data' => $emptyData,
+        ]);
+        $form->submit(null);
+
+        $this->assertSame($emptyData, $form->getViewData());
+        $this->assertEquals($expectedData, $form->getNormData());
+        $this->assertEquals($expectedData, $form->getData());
+    }
+
+    public function provideEmptyData()
+    {
+        $expectedData = \DateTime::createFromFormat('Y-m-d H:i', '1970-01-01 21:23');
+
+        return [
+            'Simple field' => ['single_text', '21:23', $expectedData],
+            'Compound text field' => ['text', ['hour' => '21', 'minute' => '23'], $expectedData],
+            'Compound choice field' => ['choice', ['hour' => '21', 'minute' => '23'], $expectedData],
+        ];
     }
 }
