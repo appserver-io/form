@@ -11,18 +11,15 @@
 
 namespace Symfony\Component\Form\Tests\Extension\Core\Type;
 
-use Symfony\Bridge\PhpUnit\ForwardCompatTestTrait;
 use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
 use Symfony\Component\Intl\Util\IntlTestHelper;
 
 class CurrencyTypeTest extends BaseTypeTest
 {
-    use ForwardCompatTestTrait;
-
     const TESTED_TYPE = 'Symfony\Component\Form\Extension\Core\Type\CurrencyType';
 
-    private function doSetUp()
+    protected function setUp()
     {
         IntlTestHelper::requireIntl($this, false);
 
@@ -34,9 +31,9 @@ class CurrencyTypeTest extends BaseTypeTest
         $choices = $this->factory->create(static::TESTED_TYPE)
             ->createView()->vars['choices'];
 
-        $this->assertContains(new ChoiceView('EUR', 'EUR', 'Euro'), $choices, '', false, false);
-        $this->assertContains(new ChoiceView('USD', 'USD', 'US Dollar'), $choices, '', false, false);
-        $this->assertContains(new ChoiceView('SIT', 'SIT', 'Slovenian Tolar'), $choices, '', false, false);
+        $this->assertContainsEquals(new ChoiceView('EUR', 'EUR', 'Euro'), $choices);
+        $this->assertContainsEquals(new ChoiceView('USD', 'USD', 'US Dollar'), $choices);
+        $this->assertContainsEquals(new ChoiceView('SIT', 'SIT', 'Slovenian Tolar'), $choices);
     }
 
     public function testSubmitNull($expected = null, $norm = null, $view = null)

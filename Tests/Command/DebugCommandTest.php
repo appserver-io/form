@@ -12,7 +12,6 @@
 namespace Symfony\Component\Form\Tests\Command;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Bridge\PhpUnit\ForwardCompatTestTrait;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Tester\CommandTester;
@@ -22,15 +21,13 @@ use Symfony\Component\Form\ResolvedFormTypeFactory;
 
 class DebugCommandTest extends TestCase
 {
-    use ForwardCompatTestTrait;
-
     public function testDebugDefaults()
     {
         $tester = $this->createCommandTester();
         $ret = $tester->execute([], ['decorated' => false]);
 
         $this->assertEquals(0, $ret, 'Returns 0 in case of success');
-        $this->assertContains('Built-in form types', $tester->getDisplay());
+        $this->assertStringContainsString('Built-in form types', $tester->getDisplay());
     }
 
     public function testDebugSingleFormType()
@@ -39,7 +36,7 @@ class DebugCommandTest extends TestCase
         $ret = $tester->execute(['class' => 'FormType'], ['decorated' => false]);
 
         $this->assertEquals(0, $ret, 'Returns 0 in case of success');
-        $this->assertContains('Symfony\Component\Form\Extension\Core\Type\FormType (Block prefix: "form")', $tester->getDisplay());
+        $this->assertStringContainsString('Symfony\Component\Form\Extension\Core\Type\FormType (Block prefix: "form")', $tester->getDisplay());
     }
 
     public function testDebugFormTypeOption()
@@ -48,7 +45,7 @@ class DebugCommandTest extends TestCase
         $ret = $tester->execute(['class' => 'FormType', 'option' => 'method'], ['decorated' => false]);
 
         $this->assertEquals(0, $ret, 'Returns 0 in case of success');
-        $this->assertContains('Symfony\Component\Form\Extension\Core\Type\FormType (method)', $tester->getDisplay());
+        $this->assertStringContainsString('Symfony\Component\Form\Extension\Core\Type\FormType (method)', $tester->getDisplay());
     }
 
     public function testDebugSingleFormTypeNotFound()
