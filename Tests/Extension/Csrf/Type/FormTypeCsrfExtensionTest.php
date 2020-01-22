@@ -11,7 +11,7 @@
 
 namespace Symfony\Component\Form\Tests\Extension\Csrf\Type;
 
-use Symfony\Bridge\PhpUnit\ForwardCompatTestTrait;
+use PHPUnit\Framework\MockObject\MockObject;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,19 +31,17 @@ class FormTypeCsrfExtensionTest_ChildType extends AbstractType
 
 class FormTypeCsrfExtensionTest extends TypeTestCase
 {
-    use ForwardCompatTestTrait;
-
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $tokenManager;
 
     /**
-     * @var \PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $translator;
 
-    private function doSetUp()
+    protected function setUp()
     {
         $this->tokenManager = $this->getMockBuilder('Symfony\Component\Security\Csrf\CsrfTokenManagerInterface')->getMock();
         $this->translator = $this->getMockBuilder('Symfony\Component\Translation\TranslatorInterface')->getMock();
@@ -51,7 +49,7 @@ class FormTypeCsrfExtensionTest extends TypeTestCase
         parent::setUp();
     }
 
-    private function doTearDown()
+    protected function tearDown()
     {
         $this->tokenManager = null;
         $this->translator = null;
@@ -144,7 +142,7 @@ class FormTypeCsrfExtensionTest extends TypeTestCase
         $this->tokenManager->expects($this->once())
             ->method('getToken')
             ->with('FORM_NAME')
-            ->willReturn('token');
+            ->willReturn(new CsrfToken('TOKEN_ID', 'token'));
 
         $view = $this->factory
             ->createNamed('FORM_NAME', 'Symfony\Component\Form\Extension\Core\Type\FormType', null, [
@@ -162,7 +160,7 @@ class FormTypeCsrfExtensionTest extends TypeTestCase
         $this->tokenManager->expects($this->once())
             ->method('getToken')
             ->with('Symfony\Component\Form\Extension\Core\Type\FormType')
-            ->willReturn('token');
+            ->willReturn(new CsrfToken('TOKEN_ID', 'token'));
 
         $view = $this->factory
             ->createNamed('', 'Symfony\Component\Form\Extension\Core\Type\FormType', null, [

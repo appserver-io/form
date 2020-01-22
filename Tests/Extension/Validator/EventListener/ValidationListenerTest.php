@@ -12,7 +12,6 @@
 namespace Symfony\Component\Form\Tests\Extension\Validator\EventListener;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Bridge\PhpUnit\ForwardCompatTestTrait;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Extension\Core\DataMapper\PropertyPathMapper;
@@ -27,14 +26,13 @@ use Symfony\Component\Form\FormFactoryBuilder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\ConstraintViolationInterface;
+use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ValidationListenerTest extends TestCase
 {
-    use ForwardCompatTestTrait;
-
     /**
      * @var EventDispatcherInterface
      */
@@ -61,7 +59,7 @@ class ValidationListenerTest extends TestCase
 
     private $params;
 
-    private function doSetUp()
+    protected function setUp()
     {
         $this->dispatcher = new EventDispatcher();
         $this->factory = (new FormFactoryBuilder())->getFormFactory();
@@ -169,7 +167,7 @@ class DummyValidator implements ValidatorInterface
 
     public function validate($value, $constraints = null, $groups = null)
     {
-        return [$this->violation];
+        return new ConstraintViolationList([$this->violation]);
     }
 
     public function validateProperty($object, $propertyName, $groups = null)
